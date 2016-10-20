@@ -16,9 +16,28 @@
 * *Una vez dentro, iniciamos la maquina haciendo clic en el triangulo verde y una vez iniciada la maquina virtual* 
   *pulsamos Connect*
 
-![Inicio](images/ima2.jpg)
+ ![Inicio](images/ima2.jpg)
 
+* *La primera vez que iniciamos la maquina, debemos acceder con el nombre: usuario y la contraseña: usuario (Luego debemos*
+  *cambiar nuestra contraseña).*
+  *Escribimos el comando :*
+ ~~~
+     ifconfig
+ ~~~
+ *para obtener la dirreccion IP de nuestra maquina que será la misma durante todo el curso (en nuestro caso:*
+ *Direct,inet:10.6.128.168)*
 
+ ![ssh](images/ima3.jpg)
+
+* *El útimo paso es conectarnos al iaas mediante ssh, para ello escribimos:* 
+ 
+ ~~~
+     ssh usuario@IP
+ ~~~
+
+ *(En nuestro caso : ssh@usuario10.6.128.168)*
+ 
+ 
 ## Enlaces :
 
  **Enlace al campus virtual**
