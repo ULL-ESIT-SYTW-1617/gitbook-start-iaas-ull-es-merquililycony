@@ -8,14 +8,15 @@
 
 ##Pasos para el despliegue en iaas :
 
-*Para configurar nuestro servidor en iaas debemos acceder a :* * [https://iaas.ull.es](https://iaas.ull.es) 
+* *Para configurar nuestro servidor en iaas debemos acceder a :* [https://iaas.ull.es](https://iaas.ull.es) 
 *y loguearnos con nuestro ALU.*
 
-
  ![Acceso](images/ima1.jpg)
+ 
+* *Una vez dentro, iniciamos la maquina haciendo clic en el triangulo verde y una vez iniciada la maquina virtual* 
+  *pulsamos Connect*
 
-
-
+![Inicio](images/ima2.jpg)
 
 
 ## Enlaces :
