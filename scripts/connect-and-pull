@@ -1,3 +1,0 @@
-#!/bin/sh
-
-ssh usuario@10.6.128.168 'cd src/sytw/practica-despliegues-en-iaas-y-heroku-merquililycony; git pull origin master'
