@@ -2,7 +2,7 @@
   "name": "gitbook-start-iaas-ull-es-merquililycony",
   "version": "1.0.0",
   "description": "",
-  "main": "server.js",
+  "main": "gitbook-start-iaas-ull-es-merquililycony.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
