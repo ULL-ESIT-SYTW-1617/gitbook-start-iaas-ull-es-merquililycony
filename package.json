@@ -27,6 +27,7 @@
     "gulp-run": "^1.7.1",
     "gulp-shell": "^0.5.2",
     "minimist": "^1.2.0",
-    "simple-git": "^1.54.0"
+    "simple-git": "^1.54.0",
+    "ssh-exec": "^2.0.0"
   }
 }
