@@ -12,6 +12,20 @@
   },
   "author": "Constanza León, Merquis Cruz, Liliana Galiano",
   "license": "ISC",
+  "contributors": [
+    {
+      "name": "Merquis",
+      "email": "alu0100536690@ull.edu.es"
+    },
+    {
+      "name": "Liliana",
+      "email": "alu0100762846@ull.edu.es"
+    },
+    {
+      "name": "Constanza",
+      "email": "alu0100673647@ull.edu.es"
+    }
+  ],
   "bugs": {
     "url": "https://github.com/ULL-ESIT-SYTW-1617/gitbook-start-iaas-ull-es-merquililycony/issues"
   },
