@@ -20,12 +20,30 @@ function reply (stdout,stderr,error){
 
 
 function initialize(ip,user,url,route){
-    var dir = process.cwd() + '/';
+     var dir = process.cwd() + '/';
     var routee = path.join(n_dir,'gulpfile.js');
     
-    fs.readFile(dir + 'gulpfile.js',"utf-8",function(err,data) {
-       
+   fs.readFile(dir + 'gulpfile.js',"utf-8",function(err,data) {
+        if(err)
+            throw err;
+        if(data.search("deploy-iaas-ull-es") != -1){
+            console.log("Ya existe!!")
+        }else{
+            fs.readFile(route, (err, data) => {
+              if (err)
+                throw err;
+              
+              fs.appendFile(dir +'gulpfile.js', data, (err) => {
+                if (err) 
+                    throw err;
+              });
+            });    
+        } 
     });
+        
+        
+        
+         exec_ssh("ssh-keygen -f iaas");
     
     
 };  
