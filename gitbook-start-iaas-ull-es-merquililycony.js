@@ -8,7 +8,7 @@ const gitUrlParse = require("git-url-parse");
 
 
 
-var reply = ((stdout,stderr,error) =>{
+function reply (stdout,stderr,error){
     if(error){
         console.error("Se ha producido un error:"+error);
         console.log("Stdout:"+stdout);
@@ -16,9 +16,21 @@ var reply = ((stdout,stderr,error) =>{
         
         
     }
-});
+};
 
-var deploy = ((ip,user,url,route) => {
+
+function initialize(ip,user,url,route){
+    var dir = process.cwd() + '/';
+    var routee = path.join(n_dir,'gulpfile.js');
+    
+    fs.readFile(dir + 'gulpfile.js',"utf-8",function(err,data) {
+       
+    });
+    
+    
+};  
+
+function deploy (ip,user,url,route){
     
     var doc = gitUrlParse(url);
     console.log("Iniciando despliegue en Iaas...");
@@ -33,7 +45,7 @@ var deploy = ((ip,user,url,route) => {
         key: '~/.ssh/iaas.pub'
     },reply); 
     
-});
+};
 
 
 module.exports = {

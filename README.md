@@ -1,4 +1,5 @@
-# Práctica 4: Despliegue en iaas
+# Práctica 4: Nueva funcionalidad para el paquete npm
+## Paquete: gitbook-start-iaas-ull-es.merquililycony
 
 
 # Objetivo:
@@ -6,38 +7,7 @@
 *funcionalidad que permita que los usuarios realizar un despliegue automatico en el servidor de IAAS*
 
 
-##Pasos para el despliegue en iaas :
 
-* *Para configurar nuestro servidor en iaas debemos acceder a :* [https://iaas.ull.es](https://iaas.ull.es) 
-*y loguearnos con nuestro ALU.*
-
- ![Acceso](images/ima1.jpg)
- 
-* *Una vez dentro, iniciamos la maquina haciendo clic en el triangulo verde y una vez iniciada la maquina virtual* 
-  *pulsamos Connect*
-
- ![Inicio](images/ima2.jpg)
-
-* *La primera vez que iniciamos la maquina, debemos acceder con el nombre: usuario y la contraseña: usuario (Luego debemos*
-  *cambiar nuestra contraseña).*
-  *Escribimos el comando :*
- ~~~
-     ifconfig
- ~~~
- *para obtener la dirreccion IP de nuestra maquina que será la misma durante todo el curso (en nuestro caso:*
- *Direct,inet:10.6.128.168)*
-
- ![ssh](images/ima3.jpg)
-
-* *El útimo paso es conectarnos al iaas mediante ssh, para ello escribimos:* 
- 
- ~~~
-     ssh usuario@IP
- ~~~
-
- *(En nuestro caso : ssh@usuario10.6.128.168)*
- 
- 
 ## Enlaces :
 
  **Enlace al campus virtual**
@@ -46,13 +16,12 @@
 
  **Repositorio GitHuB donde se realizó la práctica**
 
- * [Organización](https://github.com/ULL-ESIT-SYTW-1617/nueva-funcionalidad-para-el-paquete-npm-plugins-merquililycony/)
-
+ * [Organización](https://github.com/ULL-ESIT-SYTW-1617/gitbook-start-iaas-ull-es-merquililycony/)
  **Enlace a Gh-pages**
 
  * [gh-pages](https://ull-esit-sytw-1617.github.io/nueva-funcionalidad-para-el-paquete-npm-plugins-merquililycony/)
 
- * [npm](https://www.npmjs.com/package/sytw1617-merquililycony)
+ * [npm](https://www.npmjs.com/package/gitbook-start-iaas-ull-es-merquililycony)
 
  **Página de los autores**
 
