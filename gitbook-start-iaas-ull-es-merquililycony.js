@@ -25,7 +25,7 @@ function initialize(ip,user,url,route){
    fs.readFile(dir + 'gulpfile.js',"utf-8",function(err,data) {
         if(err)
             throw err;
-        if(data.search("deploy-iaas-ull-es") != -1){
+        if(data.search("deploy-iaas") != -1){
             console.log("Ya existe!!")
         }else{ 
             
