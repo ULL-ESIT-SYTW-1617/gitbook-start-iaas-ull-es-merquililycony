@@ -71,7 +71,7 @@ function deploy (ip,user,url,route){
 
 
 module.exports = {
-//   initialize,
+  initialize,
   reply,
   deploy
 }
