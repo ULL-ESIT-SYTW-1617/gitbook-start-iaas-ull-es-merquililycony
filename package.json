@@ -30,6 +30,12 @@
     "url": "https://github.com/ULL-ESIT-SYTW-1617/gitbook-start-iaas-ull-es-merquililycony/issues"
   },
   "homepage": "https://github.com/ULL-ESIT-SYTW-1617/gitbook-start-iaas-ull-es-merquililycony#readme",
+  "iass":{
+    user: user,
+    ip : ip,
+    path: '~/.ssh/',
+    file: 'iaas.pub'
+  }
   "dependencies": {
     "ejs": "^2.5.2",
     "fs-extra": "^0.30.0",

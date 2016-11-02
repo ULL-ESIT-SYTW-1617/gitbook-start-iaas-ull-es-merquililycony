@@ -19,7 +19,7 @@ function initialize(ip,user,url,route){
     
     var dir = process.cwd() + '/';
     var doc = gitUrlParse(url);
-    
+    var iaas_data = require("./package.json");
     
     
    fs.readFile(dir + 'gulpfile.js',"utf-8",function(err,data) {
@@ -36,12 +36,20 @@ function initialize(ip,user,url,route){
           
         } 
     });
-        
-        
-        
-         exec_ssh("ssh-keygen -f iaas");
     
-    
+    // Creamos las claves y las copiamos en el fichero
+    // authorized_keys
+    exec_ssh("ssh-keygen -f iaas");
+    exec_ssh("ssh-copy-id -i iaas " + iaas_data.iaas.user + "@" + iaas_data.iaas.ip);
+    exec_ssh("mv iaas ~/.ssh; mv iaas.pub ~/.ssh",function(err){
+        if(err){
+            console.log(err);
+        }else{
+            
+            console.log("Tranferencia de archivo iaas.pub a la maquina IAAS realizada correctamente")
+        }
+        
+    }); 
 };  
 
 function deploy (ip,user,url,route){
