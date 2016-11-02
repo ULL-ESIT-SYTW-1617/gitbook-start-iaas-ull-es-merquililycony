@@ -1,5 +1,3 @@
-"use strict"
-
 const exec_ssh = require('ssh-exec');
 const fs = require('fs-extra');
 const path = require('path');
@@ -13,31 +11,29 @@ function reply (stdout,stderr,error){
         console.error("Se ha producido un error:"+error);
         console.log("Stdout:"+stdout);
         console.log("Stderr:"+stderr);
-        
-        
     }
 };
 
 
 function initialize(ip,user,url,route){
-     var dir = process.cwd() + '/';
-    var routee = path.join(n_dir,'gulpfile.js');
+    
+    var dir = process.cwd() + '/';
+    var doc = gitUrlParse(url);
+    
+    
     
    fs.readFile(dir + 'gulpfile.js',"utf-8",function(err,data) {
         if(err)
             throw err;
         if(data.search("deploy-iaas-ull-es") != -1){
             console.log("Ya existe!!")
-        }else{
-            fs.readFile(route, (err, data) => {
-              if (err)
-                throw err;
-              
-              fs.appendFile(dir +'gulpfile.js', data, (err) => {
+        }else{ 
+            
+            fs.appendFile(dir +'gulpfile.js', data, function(err) {
                 if (err) 
                     throw err;
-              });
-            });    
+            });
+          
         } 
     });
         
