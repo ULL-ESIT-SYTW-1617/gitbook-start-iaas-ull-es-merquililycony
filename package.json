@@ -31,7 +31,7 @@
   },
   "homepage": "https://github.com/ULL-ESIT-SYTW-1617/gitbook-start-iaas-ull-es-merquililycony#readme",
   "iass":{
-    "user": "user",
+    "user": "usuario",
     "ip" : "10.6.128.168",
     "path": "'~/.ssh/'",
     "file": "'iaas.pub'"
