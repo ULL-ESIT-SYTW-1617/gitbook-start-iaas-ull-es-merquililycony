@@ -32,7 +32,7 @@
   "homepage": "https://github.com/ULL-ESIT-SYTW-1617/gitbook-start-iaas-ull-es-merquililycony#readme",
   "iass":{
     "user": "user",
-    "ip" : "ip",
+    "ip" : "10.6.128.168",
     "path": "'~/.ssh/'",
     "file": "'iaas.pub'"
   },
