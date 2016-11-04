@@ -6,32 +6,32 @@
 *El objetivo de esta práctica es extender el package NodeJS publicado en npm en una práctica anterior con una nueva*
 *funcionalidad que permita que los usuarios realizar un despliegue automatico en el servidor de IAAS*
 
-##Instalación
+## Instalación
 
-###Instalar el paquete gitbook-start
+### Instalar el paquete gitbook-start
 ~~~
-    $ npm install -g gitbook-start-iaas-ull-es-merquililycony
+    $ npm install -g nueva-funcionalidad-para-el-paquete-npm-merquililycony
 ~~~
 
-###Construir el libro con el paquete instalado
+### Construir el libro con el paquete instalado
 
 ~~~
     $ gitbook-start  -d <directorio> --name <nombre_gitbook> --author <nombre del autor> --url <url del repositorio> --version
 ~~~
 
-###Situarse dentro de la carpeta en donde creamos el libro e instalar dependencias
+### Situarse dentro de la carpeta en donde creamos el libro e instalar dependencias
 
 ~~~
     $ cd <dir>
     $ npm install
 
-###Instalamos el plugin con --save
+### Instalamos el plugin con --save
 
 ~~~
     $ npm install --save gitbook-start-iaas-ull-es-merquililycony
 ~~~
 
-###Ejecutar el plugin
+### Ejecutar el plugin
 
 ~~~
     gitbook-start --deploy iaas-ull-es --IP <ip> --usuario <usuario> --path<ruta>
