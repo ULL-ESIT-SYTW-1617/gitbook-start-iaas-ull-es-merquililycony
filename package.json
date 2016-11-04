@@ -1,6 +1,6 @@
 {
   "name": "gitbook-start-iaas-ull-es-merquililycony",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "",
   "main": "gitbook-start-iaas-ull-es-merquililycony.js",
   "scripts": {
@@ -30,14 +30,7 @@
     "url": "https://github.com/ULL-ESIT-SYTW-1617/gitbook-start-iaas-ull-es-merquililycony/issues"
   },
   "homepage": "https://github.com/ULL-ESIT-SYTW-1617/gitbook-start-iaas-ull-es-merquililycony#readme",
-  "iass":{
-    "user": "usuario",
-    "ip" : "10.6.128.168",
-    "path": "'~/.ssh/'",
-    "file": "'iaas.pub'"
-
-  },
-  "dependencies": {
+    "dependencies": {
     "ejs": "^2.5.2",
     "fs-extra": "^0.30.0",
     "gh-pages": "^0.11.0",
@@ -46,6 +39,7 @@
     "gulp": "^3.9.1",
     "gulp-git": "^1.11.3",
     "gulp-install": "^0.6.0",
+    "scp": "0.0.3",
     "gulp-run": "^1.7.1",
     "gulp-shell": "^0.5.2",
     "minimist": "^1.2.0",

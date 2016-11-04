@@ -2,6 +2,7 @@ const exec_ssh = require('ssh-exec');
 const fs = require('fs-extra');
 const path = require('path');
 const gitUrlParse = require("git-url-parse");
+var scp_ = require('scp');
 
 
 
@@ -18,9 +19,12 @@ function reply (stdout,stderr,error){
 function initialize(ip,user,url,route){
     
     var dir = process.cwd() + '/';
-    var doc = gitUrlParse(url);
-    var iaas_data = require("./package.json");
-    
+    var datos = {
+        user: user,
+        host: ip,
+        file: 'iaas.pub',
+        path: '~/.ssh/'
+    }
     
    fs.readFile(dir + 'gulpfile.js',"utf-8",function(err,data) {
         if(err)
@@ -33,7 +37,6 @@ function initialize(ip,user,url,route){
                 if (err) 
                     throw err;
             });
-          
         } 
     });
     
@@ -43,25 +46,37 @@ function initialize(ip,user,url,route){
         }
     });
     
-    // Creamos las claves y las copiamos en el fichero
-    // authorized_keys
-    
     exec_ssh("ssh-keygen -f iaas");
-    exec_ssh("ssh-copy-id -i iaas " + iaas_data.iaas.user + "@" + iaas_data.iaas.ip);
-    exec_ssh("mv iaas ~/.ssh; mv iaas.pub ~/.ssh",function(err){
-        if(err){
-            console.log(err);
-        }else{
-            
-            console.log("Tranferencia de archivo iaas.pub a la maquina IAAS realizada correctamente")
-        }
+    
+    scp_.send(datos, function (err) {
+      if (err) console.log(err);
+      else
+      {
+        exec_ssh("mv iaas ~/.ssh; mv iaas.pub ~/.ssh",function(err){
+            if(err){
+                console.log(err);
+            }else{
+                
+                console.log("Tranferencia de archivo iaas.pub a la maquina IAAS realizada correctamente")
+            }
         
-    }); 
+        }); 
+      }
+    });
+    
+    
+    exec_ssh(`cd ${route}; git clone ${url}`, {
+      user: user,
+      host: ip,
+      key: '~/.ssh/iaas.pub'
+    }, reply);
+    
 };  
 
 function deploy (ip,user,url,route){
     
     var doc = gitUrlParse(url);
+    
     console.log("Iniciando despliegue en Iaas...");
     console.log('Direccion IP : '+ip);
     console.log('Usuario : '+user);
