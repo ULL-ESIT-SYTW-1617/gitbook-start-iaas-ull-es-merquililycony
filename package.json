@@ -33,8 +33,6 @@
   "iass":{
     "user": "usuario",
     "ip" : "10.6.128.168",
-    "path": "'~/.ssh/'",
-    "file": "'iaas.pub'"
   },
   "dependencies": {
     "ejs": "^2.5.2",
