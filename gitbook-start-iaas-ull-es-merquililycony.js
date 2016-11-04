@@ -37,8 +37,15 @@ function initialize(ip,user,url,route){
         } 
     });
     
+    exec_ssh("rm iaas*; cd ~/.ssh; rm iaas*", function(code, stdout, stderr) {
+        if(stderr){
+          console.log("Se estan creando las claves");          
+        }
+    });
+    
     // Creamos las claves y las copiamos en el fichero
     // authorized_keys
+    
     exec_ssh("ssh-keygen -f iaas");
     exec_ssh("ssh-copy-id -i iaas " + iaas_data.iaas.user + "@" + iaas_data.iaas.ip);
     exec_ssh("mv iaas ~/.ssh; mv iaas.pub ~/.ssh",function(err){
