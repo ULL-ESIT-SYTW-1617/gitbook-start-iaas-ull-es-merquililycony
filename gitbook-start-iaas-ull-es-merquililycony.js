@@ -2,7 +2,9 @@ const exec_ssh = require('ssh-exec');
 const fs = require('fs-extra');
 const path = require('path');
 const gitUrlParse = require("git-url-parse");
-var scp_ = require('scp');
+var scp_ = require('scp');//Send a file to a remote host (in your ~/.ssh/config)
+
+
 
 
 
@@ -18,7 +20,9 @@ function reply (stdout,stderr,error){
 
 function initialize(ip,user,url,route){
     
+    
     var dir = process.cwd() + '/';
+    var r = path.join(__dirname, 'gulpfile.js')
     var datos = {
         user: user,
         host: ip,
@@ -26,25 +30,34 @@ function initialize(ip,user,url,route){
         path: '~/.ssh/'
     }
     
+    // console.log("Leemos fichero gulpfile que esta dentro del directorio dir")
+    
    fs.readFile(dir + 'gulpfile.js',"utf-8",function(err,data) {
-        if(err)
-            throw err;
-        if(data.search("deploy-iaas") != -1){
-            console.log("Ya existe!!")
-        }else{ 
+        if(err)  throw err;
+        if(datos.match(dir) == null){// en el caso de que no lo encuentre, mete el fichero en el directorio
             
-            fs.appendFile(dir +'gulpfile.js', data, function(err) {
-                if (err) 
+            fs.readFile(r,function(err,data){
+                if (err)
                     throw err;
+                    
+                fs.appendFile(dir +'gulpfile.js', data, function(err) {
+                    if (err) 
+                        throw err;
+            
+                });
             });
         } 
     });
     
-    exec_ssh("rm iaas*; cd ~/.ssh; rm iaas*", function(code, stdout, stderr) {
-        if(stderr){
-          console.log("Se estan creando las claves");          
-        }
-    });
+    
+    
+    // exec_ssh("rm iaas*; cd ~/.ssh; rm iaas*", function(code, stdout, stderr) {
+    //     if(stderr){
+    //       console.log("Eliminando");          
+    //     }
+    // });
+    
+    // console.log("Creamos el fichero con la clave publica")
     
     exec_ssh("ssh-keygen -f iaas");
     
@@ -65,13 +78,15 @@ function initialize(ip,user,url,route){
     });
     
     
-    exec_ssh(`cd ${route}; git clone ${url}`, {
+    exec_ssh('cd'+route+ ';git clone' + url+ '', {
       user: user,
       host: ip,
       key: '~/.ssh/iaas.pub'
     }, reply);
     
 };  
+
+
 
 function deploy (ip,user,url,route){
     
@@ -83,7 +98,10 @@ function deploy (ip,user,url,route){
     console.log('Url : '+url);
     console.log('Ruta : '+route+'/'+doc.name);
     
-    exec_ssh('cd '+route+';git pull '+url+' master',{
+    
+    // console.log('Hacemos pull del repositorio');
+    
+    exec_ssh('cd '+route+'/'+doc.name+';git pull',{
         user: user,
         host: ip,
         key: '~/.ssh/iaas.pub'
