@@ -32,15 +32,20 @@ function initialize(ip,user,url,route){
     
     // console.log("Leemos fichero gulpfile que esta dentro del directorio dir")
     
-   fs.readFile(dir + 'gulpfile.js',"utf-8",function(err,data) {
+    
+   fs.readFile(dir + 'gulpfile.js',"utf-8", (err,data) => {
         if(err)  throw err;
-        if(datos.match(dir) == null){// en el caso de que no lo encuentre, mete el fichero en el directorio
+        
+        if(data.find("deploy-iaas-ull") != -1){
             
+            console.log("La tarea ya está creada")
+            
+        }else{//en el caso de que no
             fs.readFile(r,function(err,data){
                 if (err)
                     throw err;
                     
-                fs.appendFile(dir +'gulpfile.js', data, function(err) {
+                fs.appendFile(dir +'gulpfile.js', data, (err) => {
                     if (err) 
                         throw err;
             
@@ -61,7 +66,7 @@ function initialize(ip,user,url,route){
     
     exec_ssh("ssh-keygen -f iaas");
     
-    scp_.send(datos, function (err) {
+    scp_.send(datos, (err) => {
       if (err) console.log(err);
       else
       {
