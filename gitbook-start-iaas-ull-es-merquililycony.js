@@ -5,24 +5,21 @@ const gitUrlParse = require("git-url-parse");
 var scp_ = require('scp');//Send a file to a remote host (in your ~/.ssh/config)
 
 
-
-
-
-
-function reply (stdout,stderr,error){
+var reply = ((stdout,stderr,error) => {
     if(error){
         console.error("Se ha producido un error:"+error);
         console.log("Stdout:"+stdout);
         console.log("Stderr:"+stderr);
     }
-};
+    
+});
 
 
-function initialize(ip,user,url,route){
+function initialize(ip,user,url,route){// Inicialize del plugin deploy-iaas-ull
     
     
     var dir = process.cwd() + '/';
-    var r = path.join(__dirname, 'gulpfile.js')
+    var r = path.join(__dirname, 'gulpfile.js')//ruta
     var datos = {
         user: user,
         host: ip,
@@ -30,51 +27,46 @@ function initialize(ip,user,url,route){
         path: '~/.ssh/'
     }
     
-    // console.log("Leemos fichero gulpfile que esta dentro del directorio dir")
-    
+    // Leemos fichero gulpfile que esta dentro del directorio
     
    fs.readFile(dir + 'gulpfile.js',"utf-8", (err,data) => {
         if(err)  throw err;
         
-        if(data.find("deploy-iaas-ull") != -1){
-            
-            console.log("La tarea ya está creada")
-            
-        }else{//en el caso de que no
-            fs.readFile(r,function(err,data){
+        if(data.search("deploy-iaas-ull") != -1){//Ya existe la tarea
+            console.log("La tarea ya está creada!!")
+        }else{   //En el caso de que no, lo añade
+        
+             fs.readFile(r,(err,data) => {
                 if (err)
                     throw err;
-                    
-                fs.appendFile(dir +'gulpfile.js', data, (err) => {
-                    if (err) 
-                        throw err;
-            
-                });
+                else{    
+                    fs.appendFile(dir +'gulpfile.js', data, (err) => {
+                        if (err) 
+                            throw err;
+                
+                    });
+                }
             });
         } 
     });
     
     
-    
-    // exec_ssh("rm iaas*; cd ~/.ssh; rm iaas*", function(code, stdout, stderr) {
-    //     if(stderr){
-    //       console.log("Eliminando");          
-    //     }
-    // });
-    
-    // console.log("Creamos el fichero con la clave publica")
+     // Creamos el fichero con la clave publica
     
     exec_ssh("ssh-keygen -f iaas");
     
+    
+    
     scp_.send(datos, (err) => {
-      if (err) console.log(err);
+      if (err) 
+        throw err;
       else
       {
-        exec_ssh("mv iaas ~/.ssh; mv iaas.pub ~/.ssh",function(err){
+        exec_ssh("ssh-copy-id -i iaas " + user + "@" + ip);//añadiendo clave a fichero 
+        exec_ssh("mv iaas ~/.ssh; mv iaas.pub ~/.ssh",(err) => {
             if(err){
-                console.log(err);
+                throw err;
             }else{
-                
                 console.log("Tranferencia de archivo iaas.pub a la maquina IAAS realizada correctamente")
             }
         
@@ -82,12 +74,13 @@ function initialize(ip,user,url,route){
       }
     });
     
-    
-    exec_ssh('cd'+route+ ';git clone' + url+ '', {
+        
+  exec_ssh('cd'+route+ ';git clone' + url+ '',{
       user: user,
       host: ip,
       key: '~/.ssh/iaas.pub'
     }, reply);
+    
     
 };  
 
@@ -104,13 +97,14 @@ function deploy (ip,user,url,route){
     console.log('Ruta : '+route+'/'+doc.name);
     
     
-    // console.log('Hacemos pull del repositorio');
-    
+    // Hacemos pull del repositorio
+     
     exec_ssh('cd '+route+'/'+doc.name+';git pull',{
         user: user,
         host: ip,
         key: '~/.ssh/iaas.pub'
     },reply); 
+   
     
 };
 
