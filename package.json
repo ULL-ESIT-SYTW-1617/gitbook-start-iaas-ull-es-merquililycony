@@ -33,7 +33,6 @@
     "user": "usuario",
     "ip": "10.6.128.168",
     "ruta": "/home/usuario/src/sytw/gitbook-start-iaas-ull"
-    "url": "https://github.com/ULL-ESIT-SYTW-1617/gitbook-start-iaas-ull-es-merquililycony.git"
   },
   "homepage": "https://github.com/ULL-ESIT-SYTW-1617/gitbook-start-iaas-ull-es-merquililycony#readme",
     "dependencies": {
