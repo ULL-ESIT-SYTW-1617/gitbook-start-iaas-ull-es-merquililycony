@@ -1,6 +1,5 @@
 
-
-// const path = require('path');
+const path = require('path');
 // var scp_ = require('scp');//Send a file to a remote host (in your ~/.ssh/config)
 
     function initialize (){// Inicialize del plugin deploy-iaas-ull
