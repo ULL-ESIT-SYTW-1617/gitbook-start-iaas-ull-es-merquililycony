@@ -7,7 +7,7 @@ const path = require('path');
         var exec_ssh = require('ssh-exec');
         var dir = process.cwd() + '/';
         var r = path.join(__dirname, 'gulpfile.js')//ruta
-        var dato = require(dir + "package.jason");
+        var dato = require(dir + "package.json");
 
         var task = '\ngulp.task("deploy-ull-iaas-es", function () {'+ 
         '\n\tvar iaas = require("gitbook-start-iaas-ull-es-merquililycony");'+
