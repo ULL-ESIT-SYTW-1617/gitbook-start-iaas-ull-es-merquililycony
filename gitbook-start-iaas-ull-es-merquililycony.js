@@ -83,14 +83,14 @@ function deploy() {
         exec_ssh('cd '+dato.iaas.ruta+';git clone'+url+'',{
             user: dato.iaas.user,
             host: dato.iaas.ip,
-            key: 'fs.readFileSync(`${process.env.HOME}/.ssh/id_rsa`)'
+            key: '~/.ssh/iaas.pub'
         },function(err){
             if(err){
                 console.log("Hacemos un pull al repositorio.")
                 exec_ssh('cd '+dato.iaas.ruta+';git pull',{
                     user: dato.iaas.user,
                     host: dato.iaas.ip,
-                    key: 'fs.readFileSync(`${process.env.HOME}/.ssh/id_rsa`)'
+                    key: '~/.ssh/iaas.pub'
                 });
             }
 
