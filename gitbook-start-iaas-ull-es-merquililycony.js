@@ -1,7 +1,8 @@
 
     function initialize (){// Inicialize del plugin deploy-iaas-ull
         
-        var exec_ssh = require('ssh-exec');
+        var exec_ssh = require('simple-ssh');
+        var exec_ssh2 = require('ssh-exec');
         var path = require('path');
         var dir = process.cwd() + '/';
         var r = path.join(__dirname, 'gulpfile.js')//ruta
@@ -13,7 +14,7 @@
         	file: 'iaas.pub',
         	user: dato.iaas.user,
             host: dato.iaas.ip,
-            port: '8080',
+            port: '22',
             path: '~/.ssh/' 
         }
 
@@ -37,48 +38,8 @@
                     });
             }
        });
-            
-        
-        
-	require('shelljs/global');
-	exec_ssh("npm install gitbook-start-iaas-ull-es-merquililycony --save");
-
-	//       var pck = require("./package.json");
-
-	//         exec("rm iaas*; cd ~/.ssh; rm iaas*", function(code, stdout, stderr) {
-	//            	if(stderr){
-	//              console.log("Creando claves");          
-	//         	}
-	//        });
-
-	console.log("Creamos el fichero con la clave publica")
-    exec_ssh("ssh-keygen -f iaas");      
-    console.log("Introduzca la clave para configurar la clave authorized_keys \n");
-    exec_ssh("ssh-copy-id -i iaas " + dato.iaas.user + "@" + dato.iaas.ip);//añadiendo clave a fichero 
-
-    
- //      exec("ssh-copy-id -i iaas " + pck.iaas.user + "@" + pck.iaas.ip);
- //      console.log("Clave añadida al fichero authorized_keys\n");
-
-
-        // scp_.send(datos, function(err) {
-        //   if (err) 
-        //     console.log("ERROR2");
-        //   else
-        //   {
-        //     exec_ssh("ssh-copy-id -i iaas " + dato.iaas.user + "@" + dato.iaas.ip);//añadiendo clave a fichero 
-        //     exec_ssh("mv iaas ~/.ssh; mv iaas.pub ~/.ssh",function(err) {
-        //         if(err)
-        //             console.log("Error con las claves");
-        //         else{
-        //             console.log("Tranferencia de archivo iaas.pub a la maquina IAAS realizada correctamente")
-        //         }
-            
-        //     }); 
-        //   }
-        // });
-         
-        
+  
+     
 };
 
 function deploy() {
@@ -88,7 +49,7 @@ function deploy() {
         
         var dir = process.cwd() + '/';
         var dato = require(dir + "package.json");
-        var exec_ssh = require('ssh-exec');
+        var exec_ssh = require('simple-ssh');
         var fs = require('fs-extra');
         var url = 'https://github.com/ULL-ESIT-SYTW-1617/gitbook-start-iaas-ull-es-merquililycony.git'
         
@@ -96,7 +57,10 @@ function deploy() {
         exec_ssh('cd '+dato.iaas.ruta+';git clone'+url+'',{
             user: dato.iaas.user,
             host: dato.iaas.ip,
-            key: '~/.ssh/iaas.pub'
+            // key: '~/.ssh/iaas.pub'
+            agent: process.env.SSH_AUTH_SOCK,
+            agentForward: true
+
         },function(err){
             if(err){
                 console.log("Error al clonar")
