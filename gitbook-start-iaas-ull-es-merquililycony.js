@@ -10,13 +10,13 @@
         var fs = require('fs-extra');
         var scp_ = require('scp');//Send a file to a remote host (in your ~/.ssh/config)
 
-        var datos = {
-        	file: 'iaas.pub',
-        	user: dato.iaas.user,
-            host: dato.iaas.ip,
-            port: '22',
-            path: '~/.ssh/' 
-        }
+        // var datos = {
+        // 	file: 'iaas.pub',
+        // 	user: dato.iaas.user,
+        //     host: dato.iaas.ip,
+        //     port: '22',
+        //     path: '~/.ssh/' 
+        // }
 
         var task = '\ngulp.task("deploy-ull-iaas-es", function () {'+ 
         '\n\tvar iaas = require("gitbook-start-iaas-ull-es-merquililycony");'+
@@ -39,6 +39,8 @@
             }
        });
   
+   
+
 
 };
 
@@ -55,12 +57,12 @@ function deploy() {
         var url = 'https://github.com/ULL-ESIT-SYTW-1617/gitbook-start-iaas-ull-es-merquililycony.git'
         
             // // Hacemos clone del repositorio
-        exec_ssh2('cd '+dato.iaas.ruta+';git clone'+url+'',{
+        exec_ssh('cd '+dato.iaas.ruta+';git clone'+url+'',{
             user: dato.iaas.user,
             host: dato.iaas.ip,
-            key: '~/.ssh/iaas.pub'
-            // agent: process.env.SSH_AUTH_SOCK,
-            // agentForward: true
+            // key: '~/.ssh/iaas.pub'
+            agent: process.env.SSH_AUTH_SOCK,
+            agentForward: true
 
         },function(err){
             if(err){
