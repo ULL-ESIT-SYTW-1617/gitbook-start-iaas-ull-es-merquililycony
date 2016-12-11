@@ -51,7 +51,6 @@ function deploy() {
         
         var dir = process.cwd() + '/';
         var dato = require(dir + "package.json");
-        var exec_ssh = require('simple-ssh');
         var exec_ssh2 = require('ssh-exec');
         var fs = require('fs-extra');
         var url = 'https://github.com/ULL-ESIT-SYTW-1617/gitbook-start-iaas-ull-es-merquililycony.git'
@@ -60,10 +59,10 @@ function deploy() {
         exec_ssh2('cd '+dato.iaas.ruta+';git clone'+url+'',{
             user: dato.iaas.user,
             host: dato.iaas.ip,
-            key: '~/.ssh/iaas.pub'
+            // key: '~/.ssh/iaas.pub'
             // agent: process.env.SSH_AUTH_SOCK,
             // agentForward: true
-            // key: 'fs.readFileSync(`${process.env.HOME}/.ssh/iaas.pub`)'
+            key: 'fs.readFileSync(`${process.env.HOME}/.ssh/iaas.pub`)'
 
         },function(err){
             if(err){
