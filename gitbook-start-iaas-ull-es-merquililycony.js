@@ -57,12 +57,13 @@ function deploy() {
         var url = 'https://github.com/ULL-ESIT-SYTW-1617/gitbook-start-iaas-ull-es-merquililycony.git'
         
             // // Hacemos clone del repositorio
-        exec_ssh('cd '+dato.iaas.ruta+';git clone'+url+'',{
+        exec_ssh2('cd '+dato.iaas.ruta+';git clone'+url+'',{
             user: dato.iaas.user,
             host: dato.iaas.ip,
-            // key: '~/.ssh/iaas.pub'
-            agent: process.env.SSH_AUTH_SOCK,
-            agentForward: true
+            key: '~/.ssh/iaas.pub'
+            // agent: process.env.SSH_AUTH_SOCK,
+            // agentForward: true
+            // key: 'fs.readFileSync(`${process.env.HOME}/.ssh/iaas.pub`)'
 
         },function(err){
             if(err){
