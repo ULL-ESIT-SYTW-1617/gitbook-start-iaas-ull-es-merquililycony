@@ -45,6 +45,7 @@
     "gulp-git": "^1.11.3",
     "gulp-install": "^0.6.0",
     "scp": "0.0.3",
+    "shelljs": "^0.7.5",
     "gulp-run": "^1.7.1",
     "gulp-shell": "^0.5.2",
     "minimist": "^1.2.0",
